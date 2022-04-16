@@ -30,3 +30,4 @@ tracing-appender = "0.2"
 tracing-subscriber = { version = "0.3", features = ["json", "env-filter"] }
 
 [workspace]
+members = ["crates/*"]
