@@ -1,8 +1,8 @@
+use crate::model::market_pair::MarketPair;
 use derive_more::Constructor;
 use rust_decimal::prelude::Decimal;
 use serde::Deserialize;
 use serde::Serialize;
-use crate::model::market_pair::MarketPair;
 
 /// This struct represents an open market order
 #[derive(Serialize, Deserialize, Clone, Constructor, Debug, PartialEq)]

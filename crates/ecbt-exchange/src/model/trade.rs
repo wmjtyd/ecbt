@@ -1,9 +1,9 @@
+use super::Liquidity;
+use super::Side;
 use derive_more::Constructor;
 use rust_decimal::prelude::Decimal;
 use serde::Deserialize;
 use serde::Serialize;
-use super::Liquidity;
-use super::Side;
 
 /// This struct represents a trade
 #[derive(Serialize, Deserialize, Clone, Constructor, Debug)]

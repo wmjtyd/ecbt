@@ -1,8 +1,8 @@
-use async_trait::async_trait;
 use super::shared::Result;
 use super::MarketPairHandle;
 use super::MarketPairInfo;
 use crate::model::market_pair::MarketPair;
+use async_trait::async_trait;
 
 /// This struct represents the information retrieval
 #[async_trait]

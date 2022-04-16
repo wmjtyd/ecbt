@@ -1,16 +1,15 @@
-use std::convert::TryInto;
-use std::slice;
+use crate::errors::EcbtError;
+use crate::model::websocket::Subscription;
+use crate::model::websocket::WebSocketResponse;
+use crate::shared::Result;
+use crate::stream::{CallbackHandle, Subscriptions};
 use async_trait::async_trait;
 use futures::channel::mpsc::channel;
 use futures::stream::BoxStream;
-use std::fmt::Debug;
 use futures::StreamExt;
-use crate::errors::EcbtError;
-use crate::model::websocket::WebSocketResponse;
-use crate::model::websocket::Subscription;
-use crate::shared::Result;
-use crate::stream::{CallbackHandle, Subscriptions};
-
+use std::convert::TryInto;
+use std::fmt::Debug;
+use std::slice;
 
 #[async_trait]
 pub trait ExchangeStream: Send + Sync + Sized {

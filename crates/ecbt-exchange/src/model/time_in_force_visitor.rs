@@ -1,8 +1,8 @@
-use chrono::Duration;
-use serde::de::Visitor;
-use serde::de;
-use std::fmt;
 use super::TimeInForce;
+use chrono::Duration;
+use serde::de;
+use serde::de::Visitor;
+use std::fmt;
 
 /// This struct uses the time in force enum
 pub struct TimeInForceVisitor;

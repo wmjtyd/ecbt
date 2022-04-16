@@ -1,9 +1,9 @@
+use super::TimeInForceVisitor;
 use chrono::Duration;
 use serde::Deserialize;
 use serde::Deserializer;
 use serde::Serialize;
 use serde::Serializer;
-use super::TimeInForceVisitor;
 
 /// This enum represents time in force
 #[derive(Clone, Debug, PartialEq, Copy)]

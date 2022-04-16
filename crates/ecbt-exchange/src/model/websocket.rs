@@ -1,8 +1,8 @@
 use super::{OrderBookResponse, Trade};
+use crate::model::market_pair::MarketPair;
 use crate::model::{OrderStatus, OrderType, Side};
 use serde::{Deserialize, Serialize};
 use std::ops::Range;
-use crate::model::market_pair::MarketPair;
 
 /// This struct represents the account order
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
@@ -20,9 +20,9 @@ pub enum Subscription {
     // Ticker(MarketPair),           // symbol
     OrderBookUpdates(MarketPair), // symbol
     Trades(MarketPair),           // symbol
-    // AccountTrades(MarketPair),    // symbol
-    // AccountBalance(MarketPair),   // symbol
-    // AccountOrders(AccountOrders),
+                                  // AccountTrades(MarketPair),    // symbol
+                                  // AccountBalance(MarketPair),   // symbol
+                                  // AccountOrders(AccountOrders),
 }
 
 /// This enum represents a websocket response

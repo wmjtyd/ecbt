@@ -1,9 +1,8 @@
-use std::sync::Arc;
-use std::sync::RwLock;
-use crate::errors::EcbtError;
 use super::shared::Result;
 use super::MarketPairInfo;
-
+use crate::errors::EcbtError;
+use std::sync::Arc;
+use std::sync::RwLock;
 
 #[derive(Debug)]
 pub struct MarketPairHandle {
