@@ -1,11 +1,11 @@
-use std::collections::HashMap;
-use std::sync::Arc;
-use std::sync::RwLock;
-use crate::errors::EcbtError;
 use super::shared::Result;
 use super::ExchangeInfoRetrieval;
 use super::MarketPairHandle;
 use super::MarketPairInfo;
+use crate::errors::EcbtError;
+use std::collections::HashMap;
+use std::sync::Arc;
+use std::sync::RwLock;
 
 /// This struct represents informations about the openlimits-exchange
 #[derive(Clone)]

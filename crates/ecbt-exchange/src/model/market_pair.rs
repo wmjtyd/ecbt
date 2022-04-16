@@ -1,5 +1,5 @@
-use serde::{Serialize, Deserialize};
 pub use crate::model::currency::Currency;
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[allow(missing_docs)]

@@ -1,7 +1,7 @@
+use crate::model::market_pair::MarketPair;
+use crate::model::Paginator;
 use serde::Deserialize;
 use serde::Serialize;
-use crate::model::Paginator;
-use crate::model::market_pair::MarketPair;
 
 /// This struct represents the trade history
 #[derive(Serialize, Deserialize, Default)]

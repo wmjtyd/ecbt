@@ -1,11 +1,11 @@
-use derive_more::Constructor;
-use futures::stream::BoxStream;
-use crate::model::websocket::WebSocketResponse;
-use crate::model::websocket::Subscription;
 use super::shared::Result;
 use super::CallbackHandle;
 use super::ExchangeStream;
 use super::Subscriptions;
+use crate::model::websocket::Subscription;
+use crate::model::websocket::WebSocketResponse;
+use derive_more::Constructor;
+use futures::stream::BoxStream;
 
 #[derive(Constructor)]
 pub struct OpenLimitStream<E: ExchangeStream> {

@@ -2,10 +2,10 @@ use crate::message::subscription::{Subscription, SubscriptionResponse};
 
 #[derive(Debug)]
 pub enum Request {
-    Subscription(Subscription)
+    Subscription(Subscription),
 }
 
 #[derive(Debug)]
 pub enum Response {
-    Subscription(SubscriptionResponse)
+    Subscription(SubscriptionResponse),
 }

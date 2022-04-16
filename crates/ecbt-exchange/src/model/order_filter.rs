@@ -1,9 +1,9 @@
-use rust_decimal::prelude::Decimal;
-use serde::Deserialize;
-use serde::Serialize;
 use super::OrderStatus;
 use super::OrderType;
 use super::Side;
+use rust_decimal::prelude::Decimal;
+use serde::Deserialize;
+use serde::Serialize;
 use std::ops::Range;
 
 /// This struct represents an order

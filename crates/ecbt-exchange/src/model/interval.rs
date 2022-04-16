@@ -108,4 +108,3 @@ impl From<Interval> for &str {
         }
     }
 }
-

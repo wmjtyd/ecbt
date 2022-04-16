@@ -1,8 +1,8 @@
+use crate::model::market_pair::MarketPair;
+use crate::model::{Interval, Paginator};
 use derive_more::Constructor;
 use serde::Deserialize;
 use serde::Serialize;
-use crate::model::{Paginator, Interval};
-use crate::model::market_pair::MarketPair;
 
 /// This struct represents the historic of the rates
 #[derive(Serialize, Deserialize, Clone, Constructor, Debug)]
