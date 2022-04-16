@@ -11,3 +11,12 @@ High performance cryptocurrency trading API with support for user defined networ
 ## License
 
 [BSD 2-Clause License](https://opensource.org/licenses/BSD-2-Clause)
+
+### WIP
+- [done] Project Skeleton
+- [todo] Binance support
+- [todo] Nash support
+- [todo] Huobi support
+- [todo] Coinbase support
+- [todo] Apifiny support
+- [todo] Okex support
