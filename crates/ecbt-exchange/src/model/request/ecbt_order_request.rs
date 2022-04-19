@@ -7,7 +7,7 @@ use serde::Serialize;
 
 /// This struct represents an open limit order
 #[derive(Serialize, Deserialize, Clone, Constructor, Debug, PartialEq)]
-pub struct OpenLimitOrderRequest {
+pub struct EcbtOrderRequest {
     pub client_order_id: Option<String>,
     pub market_pair: MarketPair,
     pub size: Decimal,

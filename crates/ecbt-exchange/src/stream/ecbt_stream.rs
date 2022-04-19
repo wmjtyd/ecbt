@@ -8,11 +8,11 @@ use derive_more::Constructor;
 use futures::stream::BoxStream;
 
 #[derive(Constructor)]
-pub struct OpenLimitStream<E: ExchangeStream> {
+pub struct EcbtStream<E: ExchangeStream> {
     pub websocket: E,
 }
 
-impl<E: ExchangeStream> OpenLimitStream<E> {
+impl<E: ExchangeStream> EcbtStream<E> {
     pub async fn instantiate(params: E::InitParams) -> Result<Self> {
         let websocket = E::new(params).await?;
         Ok(Self { websocket })
