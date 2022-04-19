@@ -28,13 +28,13 @@ pub enum Subscription {
 /// This enum represents a websocket response
 #[derive(Debug, Clone)]
 pub enum WebSocketResponse<T> {
-    Generic(OpenLimitsWebSocketMessage),
+    Generic(EcbtWebSocketMessage),
     Raw(T),
 }
 
 /// This enum represents a websocket message type
 #[derive(Debug, Clone, Serialize)]
-pub enum OpenLimitsWebSocketMessage {
+pub enum EcbtWebSocketMessage {
     Ping,
     OrderBook(OrderBookResponse),
     // OrderBookDiff(OrderBookResponse),

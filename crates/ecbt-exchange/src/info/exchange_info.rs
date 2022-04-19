@@ -7,7 +7,7 @@ use std::collections::HashMap;
 use std::sync::Arc;
 use std::sync::RwLock;
 
-/// This struct represents informations about the openlimits-exchange
+/// This struct represents informations about the ecbt-exchange
 #[derive(Clone)]
 pub struct ExchangeInfo {
     pairs: Arc<RwLock<HashMap<String, Arc<RwLock<MarketPairInfo>>>>>,

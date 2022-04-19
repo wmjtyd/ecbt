@@ -4,7 +4,7 @@ use crate::info::ExchangeInfoRetrieval;
 use crate::model::{
     Balance, CancelAllOrdersRequest, CancelOrderRequest, Candle, GetHistoricRatesRequest,
     GetHistoricTradesRequest, GetOrderHistoryRequest, GetOrderRequest, GetPriceTickerRequest,
-    OpenLimitOrderRequest, OpenMarketOrderRequest, Order, OrderBookRequest, OrderBookResponse,
+    EcbtOrderRequest, OpenMarketOrderRequest, Order, OrderBookRequest, OrderBookResponse,
     OrderCanceled, OrderFilter, Paginator, Ticker, Trade, TradeHistoryRequest,
 };
 use crate::shared::Result;
@@ -37,8 +37,8 @@ pub trait ExchangeMarketData {
 
 #[async_trait]
 pub trait ExchangeAccount {
-    async fn limit_buy(&self, req: &OpenLimitOrderRequest) -> Result<Order>;
-    async fn limit_sell(&self, req: &OpenLimitOrderRequest) -> Result<Order>;
+    async fn limit_buy(&self, req: &EcbtOrderRequest) -> Result<Order>;
+    async fn limit_sell(&self, req: &EcbtOrderRequest) -> Result<Order>;
     async fn market_buy(&self, req: &OpenMarketOrderRequest) -> Result<Order>;
     async fn market_sell(&self, req: &OpenMarketOrderRequest) -> Result<Order>;
     async fn cancel_order(&self, req: &CancelOrderRequest) -> Result<OrderCanceled>;

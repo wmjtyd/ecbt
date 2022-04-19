@@ -3,8 +3,8 @@ name = "ecbt"
 version = "0.1.0"
 edition = "2021"
 description = "High performance cryptocurrency trading API with support for user defined networking."
-repository = "https://github.com/nash-io/openlimits"
-keywords = ["cryptocurrency", "exchange", "openlimits", "api"]
+repository = "https://github.com/oss-jtyd/ecbt"
+keywords = ["cryptocurrency", "exchange", "api"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
