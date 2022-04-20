@@ -86,9 +86,9 @@ impl Transport {
     }
 
     pub async fn get<O, S>(&self, endpoint: &str, params: Option<&S>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            S: Serialize,
+    where
+        O: DeserializeOwned,
+        S: Serialize,
     {
         let url = self.get_url(endpoint, params, false)?;
         let request = self.client.get(url).send().await?;
@@ -97,9 +97,9 @@ impl Transport {
     }
 
     pub async fn post<O, D>(&self, endpoint: &str, data: Option<&D>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            D: Serialize,
+    where
+        O: DeserializeOwned,
+        D: Serialize,
     {
         let url = self.get_url::<()>(endpoint, None, false)?;
         let request = self.client.post(url).form(&data).send().await?;
@@ -108,9 +108,9 @@ impl Transport {
     }
 
     pub async fn put<O, D>(&self, endpoint: &str, data: Option<D>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            D: Serialize,
+    where
+        O: DeserializeOwned,
+        D: Serialize,
     {
         let url = self.get_url::<()>(endpoint, None, false)?;
         let request = self.client.put(url).form(&data).send().await?;
@@ -119,9 +119,9 @@ impl Transport {
     }
 
     pub async fn delete<O, Q>(&self, endpoint: &str, data: Option<&Q>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            Q: Serialize,
+    where
+        O: DeserializeOwned,
+        Q: Serialize,
     {
         let url = self.get_url::<()>(endpoint, None, false)?;
         let request = self.client.delete(url).form(&data).send().await?;
@@ -130,9 +130,9 @@ impl Transport {
     }
 
     pub async fn signed_get<O, S>(&self, endpoint: &str, params: Option<&S>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            S: Serialize,
+    where
+        O: DeserializeOwned,
+        S: Serialize,
     {
         let mut url = self.get_url(endpoint, params, true)?;
 
@@ -145,9 +145,9 @@ impl Transport {
     }
 
     pub async fn signed_post<D, O>(&self, endpoint: &str, data: Option<&D>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            D: Serialize,
+    where
+        O: DeserializeOwned,
+        D: Serialize,
     {
         let mut url = self.get_url::<()>(endpoint, None, true)?;
 
@@ -159,9 +159,9 @@ impl Transport {
     }
 
     pub async fn signed_put<O, Q>(&self, endpoint: &str, data: Option<&Q>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            Q: Serialize,
+    where
+        O: DeserializeOwned,
+        Q: Serialize,
     {
         let mut url = self.get_url::<()>(endpoint, None, true)?;
 
@@ -174,9 +174,9 @@ impl Transport {
     }
 
     pub async fn signed_delete<O, Q>(&self, endpoint: &str, data: Option<&Q>) -> Result<O>
-        where
-            O: DeserializeOwned,
-            Q: Serialize,
+    where
+        O: DeserializeOwned,
+        Q: Serialize,
     {
         let mut url = self.get_url::<()>(endpoint, None, true)?;
 
@@ -194,8 +194,8 @@ impl Transport {
         params: Option<&Q>,
         add_recv_window: bool,
     ) -> Result<Url>
-        where
-            Q: Serialize,
+    where
+        Q: Serialize,
     {
         let url = format!("{}{}", self.base_url, endpoint);
 
@@ -223,12 +223,12 @@ impl Transport {
     }
 
     pub fn signature<D>(&self, url: &Url, body: Option<&D>) -> Result<(&str, String)>
-        where
-            D: Serialize,
+    where
+        D: Serialize,
     {
         let (key, secret) = self.check_key()?;
-        let mut mac =
-            HmacSha256::new_from_slice(secret.as_bytes()).expect("Couldn't construct hmac from bytes.");
+        let mut mac = HmacSha256::new_from_slice(secret.as_bytes())
+            .expect("Couldn't construct hmac from bytes.");
         let body = if body.is_some() {
             serde_urlencoded::to_string(body)?
         } else {
@@ -246,8 +246,8 @@ impl Transport {
     }
 
     async fn response_handler<O>(&self, response: Response) -> Result<O>
-        where
-            O: DeserializeOwned,
+    where
+        O: DeserializeOwned,
     {
         match response.status() {
             StatusCode::OK => Ok(response.json::<O>().await?),

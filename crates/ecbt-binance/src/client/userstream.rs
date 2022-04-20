@@ -1,7 +1,7 @@
+use super::shared::Result;
 use super::BaseClient;
 use crate::model::Success;
 use crate::model::UserDataStream;
-use super::shared::Result;
 
 static USER_DATA_STREAM: &str = "/api/v3/userDataStream";
 

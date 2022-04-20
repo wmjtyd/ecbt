@@ -1,12 +1,12 @@
 use std::borrow::Borrow;
 
 use ecbt_binance::{Binance, BinanceCredentials, BinanceParameters};
-use ecbt_exchange::{Exchange, ExchangeMarketData};
 use ecbt_exchange::exchange::Environment::Sandbox;
-use ecbt_exchange::model::{GetPriceTickerRequest, OrderBookRequest};
 use ecbt_exchange::model::currency::Currency;
 use ecbt_exchange::model::market_pair::MarketPair;
+use ecbt_exchange::model::{GetPriceTickerRequest, OrderBookRequest};
 use ecbt_exchange::shared::Result;
+use ecbt_exchange::{Exchange, ExchangeMarketData};
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -19,7 +19,12 @@ async fn main() -> Result<()> {
         credentials: Some(credentials),
     };
     let binance = Binance::new(param).await?;
-    let request = GetPriceTickerRequest { market_pair: MarketPair { 0: Currency::BTC, 1: Currency::USD } };
+    let request = GetPriceTickerRequest {
+        market_pair: MarketPair {
+            0: Currency::BTC,
+            1: Currency::USD,
+        },
+    };
     let s = binance.get_price_ticker(request.borrow()).await?;
     println!("{:?}", s);
     Ok(())

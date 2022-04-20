@@ -2,21 +2,21 @@
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub enum BinanceSubscription {
     /// Listen key
-    UserData(String),   
+    UserData(String),
     /// Symbol         
-    AggregateTrade(String),      
+    AggregateTrade(String),
     /// Symbol
-    Trade(String),  
+    Trade(String),
     /// (Symbol, Interval)             
-    Candlestick(String, String), 
+    Candlestick(String, String),
     /// Symbol
-    MiniTicker(String),          
+    MiniTicker(String),
     MiniTickerAll,
     /// Symbol
-    Ticker(String), 
+    Ticker(String),
     TickerAll,
     /// (Symbol, Depth)
-    OrderBook(String, i64), 
+    OrderBook(String, i64),
     /// (Symbol, Interval)
-    Depth(String, Option<u16>), 
+    Depth(String, Option<u16>),
 }

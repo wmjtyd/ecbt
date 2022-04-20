@@ -1,6 +1,6 @@
+use super::AskBid;
 use serde::Deserialize;
 use serde::Serialize;
-use super::AskBid;
 
 /// This struct represents a order book
 #[derive(Debug, Serialize, Deserialize, Clone)]

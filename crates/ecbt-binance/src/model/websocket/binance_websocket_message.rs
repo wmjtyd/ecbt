@@ -1,13 +1,13 @@
-use serde::Serialize;
 use super::AccountUpdate;
 use super::AggregateTrade;
 use super::CandlestickMessage;
 use super::Depth;
-use super::OrderBook;
 use super::MiniTicker;
+use super::OrderBook;
 use super::Ticker;
 use super::TradeMessage;
 use super::UserOrderUpdate;
+use serde::Serialize;
 
 /// This enum represents the types of websocket messages
 #[derive(Debug, Clone, Serialize)]

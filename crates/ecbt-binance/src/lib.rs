@@ -5,21 +5,21 @@ pub mod model;
 pub use ecbt_exchange::shared;
 
 use async_trait::async_trait;
-use model::KlineSummaries;
-use transport::Transport;
 use client::BaseClient;
-use std::convert::TryFrom;
-use model::{websocket::TradeMessage, SymbolFilter, ORDER_TYPE_LIMIT, ORDER_TYPE_MARKET};
 use ecbt_exchange::{
     errors::EcbtError,
     model::{
-        AskBid, Balance, CancelAllOrdersRequest, CancelOrderRequest, Candle,
+        AskBid, Balance, CancelAllOrdersRequest, CancelOrderRequest, Candle, EcbtOrderRequest,
         GetHistoricRatesRequest, GetHistoricTradesRequest, GetOrderHistoryRequest, GetOrderRequest,
-        GetPriceTickerRequest, Liquidity, EcbtOrderRequest, OpenMarketOrderRequest,
-        Order, OrderBookRequest, OrderBookResponse, OrderCanceled, OrderStatus, OrderType,
-        Paginator, Side, Ticker, TimeInForce, Trade, TradeHistoryRequest, Transaction,
-    }
+        GetPriceTickerRequest, Liquidity, OpenMarketOrderRequest, Order, OrderBookRequest,
+        OrderBookResponse, OrderCanceled, OrderStatus, OrderType, Paginator, Side, Ticker,
+        TimeInForce, Trade, TradeHistoryRequest, Transaction,
+    },
 };
+use model::KlineSummaries;
+use model::{websocket::TradeMessage, SymbolFilter, ORDER_TYPE_LIMIT, ORDER_TYPE_MARKET};
+use std::convert::TryFrom;
+use transport::Transport;
 
 use crate::shared::Result;
 
@@ -36,10 +36,10 @@ pub use transport::*;
 pub mod client;
 
 pub use client::stream::BinanceWebsocket;
-use ecbt_exchange::info::{ExchangeInfo, ExchangeInfoRetrieval, MarketPairInfo, MarketPairHandle};
-use ecbt_exchange::{Exchange, ExchangeMarketData, ExchangeAccount};
 use ecbt_exchange::exchange::Environment;
+use ecbt_exchange::info::{ExchangeInfo, ExchangeInfoRetrieval, MarketPairHandle, MarketPairInfo};
 use ecbt_exchange::model::market_pair::MarketPair;
+use ecbt_exchange::{Exchange, ExchangeAccount, ExchangeMarketData};
 
 /// The main struct of the ecbt-binance module
 #[derive(Clone)]
@@ -447,10 +447,13 @@ impl TryFrom<&GetOrderHistoryRequest> for model::AllOrderReq {
     fn try_from(req: &GetOrderHistoryRequest) -> Result<Self> {
         Ok(Self {
             paginator: req.paginator.clone().map(|p| p.into()),
-            symbol: req.market_pair
+            symbol: req
+                .market_pair
                 .clone()
                 .map(|market| crate::model::MarketPair::from(market).0)
-                .ok_or_else(|| EcbtError::MissingParameter("market_pair parameter is required.".to_string()))?,
+                .ok_or_else(|| {
+                    EcbtError::MissingParameter("market_pair parameter is required.".to_string())
+                })?,
         })
     }
 }
@@ -460,10 +463,13 @@ impl TryFrom<&TradeHistoryRequest> for model::TradeHistoryReq {
     fn try_from(trade_history: &TradeHistoryRequest) -> Result<Self> {
         Ok(Self {
             paginator: trade_history.paginator.clone().map(|p| p.into()),
-            symbol: trade_history.market_pair
+            symbol: trade_history
+                .market_pair
                 .clone()
                 .map(|market| crate::model::MarketPair::from(market).0)
-                .ok_or_else(|| EcbtError::MissingParameter("market_pair parameter is required.".to_string()))?,
+                .ok_or_else(|| {
+                    EcbtError::MissingParameter("market_pair parameter is required.".to_string())
+                })?,
         })
     }
 }
@@ -507,21 +513,21 @@ impl From<TimeInForce> for model::TimeInForce {
 impl From<Paginator> for model::Paginator {
     fn from(paginator: Paginator) -> Self {
         Self {
-            from_id: paginator
-                .after
-                .as_ref()
-                .map(|s| s.parse().expect("ecbt-binance page id did not parse as u64")),
+            from_id: paginator.after.as_ref().map(|s| {
+                s.parse()
+                    .expect("ecbt-binance page id did not parse as u64")
+            }),
             // TODO: what is this, and why do we reuse "after"?
-            order_id: paginator
-                .after
-                .map(|s| s.parse().expect("ecbt-binance order id did not parse as u64")),
+            order_id: paginator.after.map(|s| {
+                s.parse()
+                    .expect("ecbt-binance order id did not parse as u64")
+            }),
             end_time: paginator.end_time,
             start_time: paginator.start_time,
             limit: paginator.limit,
         }
     }
 }
-
 
 impl From<model::OrderStatus> for OrderStatus {
     fn from(status: model::OrderStatus) -> OrderStatus {

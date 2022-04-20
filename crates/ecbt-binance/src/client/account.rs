@@ -1,11 +1,15 @@
-use std::collections::HashMap;
-use rust_decimal::prelude::*;
-use serde_json::json;
-use crate::model::{AccountInformation, AllOrderReq, Balance, Order, ORDER_SIDE_BUY, ORDER_SIDE_SELL, ORDER_TYPE_LIMIT, ORDER_TYPE_LIMIT_MAKER, ORDER_TYPE_MARKET, OrderCanceled, OrderRequest, TimeInForce, TradeHistory, TradeHistoryReq, MarketPair};
+use super::shared::Result;
+use super::BaseClient;
+use crate::model::{
+    AccountInformation, AllOrderReq, Balance, MarketPair, Order, OrderCanceled, OrderRequest,
+    TimeInForce, TradeHistory, TradeHistoryReq, ORDER_SIDE_BUY, ORDER_SIDE_SELL, ORDER_TYPE_LIMIT,
+    ORDER_TYPE_LIMIT_MAKER, ORDER_TYPE_MARKET,
+};
 use ecbt_exchange::errors::EcbtError;
 use ecbt_exchange::info::MarketPairInfo;
-use super::BaseClient;
-use super::shared::Result;
+use rust_decimal::prelude::*;
+use serde_json::json;
+use std::collections::HashMap;
 
 impl BaseClient {
     // Account Information
@@ -188,7 +192,10 @@ impl BaseClient {
         Ok(order_canceled)
     }
 
-    pub async fn cancel_all_orders<P: Into<MarketPair>>(&self, symbol: P) -> Result<Vec<OrderCanceled>> {
+    pub async fn cancel_all_orders<P: Into<MarketPair>>(
+        &self,
+        symbol: P,
+    ) -> Result<Vec<OrderCanceled>> {
         let symbol = symbol.into().0;
         let params = json! {{"symbol":symbol}};
         let orders_canceled = self

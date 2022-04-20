@@ -2,9 +2,9 @@ use async_trait::async_trait;
 
 use crate::info::ExchangeInfoRetrieval;
 use crate::model::{
-    Balance, CancelAllOrdersRequest, CancelOrderRequest, Candle, GetHistoricRatesRequest,
-    GetHistoricTradesRequest, GetOrderHistoryRequest, GetOrderRequest, GetPriceTickerRequest,
-    EcbtOrderRequest, OpenMarketOrderRequest, Order, OrderBookRequest, OrderBookResponse,
+    Balance, CancelAllOrdersRequest, CancelOrderRequest, Candle, EcbtOrderRequest,
+    GetHistoricRatesRequest, GetHistoricTradesRequest, GetOrderHistoryRequest, GetOrderRequest,
+    GetPriceTickerRequest, OpenMarketOrderRequest, Order, OrderBookRequest, OrderBookResponse,
     OrderCanceled, OrderFilter, Paginator, Ticker, Trade, TradeHistoryRequest,
 };
 use crate::shared::Result;

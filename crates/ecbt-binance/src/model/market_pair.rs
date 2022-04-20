@@ -1,5 +1,5 @@
 use ecbt_exchange::model::market_pair::MarketPair as OMarketPair;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct MarketPair(pub String);

@@ -1,6 +1,3 @@
-use serde::Deserialize;
-use serde::Serialize;
-use rust_decimal::prelude::Decimal;
 use super::shared::string_to_decimal;
 use super::OrderExecType;
 use super::OrderRejectReason;
@@ -8,6 +5,9 @@ use super::OrderStatus;
 use super::OrderType;
 use super::Side;
 use super::TimeInForce;
+use rust_decimal::prelude::Decimal;
+use serde::Deserialize;
+use serde::Serialize;
 
 /// This struct represents the user order update
 #[derive(Debug, Serialize, Deserialize, Clone)]

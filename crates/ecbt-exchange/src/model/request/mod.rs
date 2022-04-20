@@ -1,11 +1,11 @@
 mod cancel_all_order_request;
 mod cancel_order_request;
+mod ecbt_order_request;
 mod get_historic_rates_request;
 mod get_historic_trades_request;
 mod get_order_history_request;
 mod get_order_request;
 mod get_price_ticker_request;
-mod ecbt_order_request;
 mod open_market_order_request;
 mod order_book_request;
 mod order_book_response;
@@ -13,12 +13,12 @@ mod trade_history_request;
 
 pub use cancel_all_order_request::CancelAllOrdersRequest;
 pub use cancel_order_request::CancelOrderRequest;
+pub use ecbt_order_request::EcbtOrderRequest;
 pub use get_historic_rates_request::GetHistoricRatesRequest;
 pub use get_historic_trades_request::GetHistoricTradesRequest;
 pub use get_order_history_request::GetOrderHistoryRequest;
 pub use get_order_request::GetOrderRequest;
 pub use get_price_ticker_request::GetPriceTickerRequest;
-pub use ecbt_order_request::EcbtOrderRequest;
 pub use open_market_order_request::OpenMarketOrderRequest;
 pub use order_book_request::OrderBookRequest;
 pub use order_book_response::OrderBookResponse;

@@ -1,9 +1,9 @@
-use serde::Deserialize;
-use serde::Serialize;
-use rust_decimal::prelude::Decimal;
-use super::OrderStatus;
 use super::shared::string_to_decimal;
 use super::shared::string_to_opt_decimal;
+use super::OrderStatus;
+use rust_decimal::prelude::Decimal;
+use serde::Deserialize;
+use serde::Serialize;
 
 /// This struct represents an order
 #[derive(Debug, Serialize, Deserialize, Clone)]

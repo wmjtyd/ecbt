@@ -1,6 +1,6 @@
+use super::Paginator;
 use serde::Deserialize;
 use serde::Serialize;
-use super::Paginator;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]

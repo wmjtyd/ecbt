@@ -5,7 +5,6 @@ use std::collections::HashMap;
 use std::fmt;
 use thiserror::Error;
 
-
 /// This struct represents a ecbt-binance content error
 #[derive(Serialize, Deserialize, Debug, Error)]
 pub struct BinanceContentError {

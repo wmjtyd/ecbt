@@ -1,10 +1,13 @@
-use serde_json::json;
-use serde_json::Value;
+use super::shared::Result;
 use super::BaseClient;
-use crate::model::{BookTickers, KlineParams, KlineSummaries, KlineSummary, OrderBook, PriceStats, Prices, SymbolPrice, Ticker, MarketPair};
+use crate::model::{
+    BookTickers, KlineParams, KlineSummaries, KlineSummary, MarketPair, OrderBook, PriceStats,
+    Prices, SymbolPrice, Ticker,
+};
 pub use ecbt_exchange::EcbtError;
 use rust_decimal::prelude::Decimal;
-use super::shared::Result;
+use serde_json::json;
+use serde_json::Value;
 
 // Market Data endpoints
 impl BaseClient {
@@ -12,7 +15,7 @@ impl BaseClient {
     pub async fn get_depth<I, S>(&self, symbol: S, limit: I) -> Result<OrderBook>
     where
         I: Into<Option<u64>>,
-        S: Into<MarketPair>
+        S: Into<MarketPair>,
     {
         let symbol = format!("{}", symbol.into().0);
         let limit = limit.into().unwrap_or(100);

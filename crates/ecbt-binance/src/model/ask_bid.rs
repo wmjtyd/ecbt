@@ -1,7 +1,7 @@
+use super::shared::string_to_decimal;
+use rust_decimal::prelude::Decimal;
 use serde::Deserialize;
 use serde::Serialize;
-use rust_decimal::prelude::Decimal;
-use super::shared::string_to_decimal;
 
 /// This struct represents ask and bid
 #[derive(Debug, Serialize, Deserialize, Clone)]
