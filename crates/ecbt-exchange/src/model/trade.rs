@@ -1,12 +1,12 @@
 use super::Liquidity;
 use super::Side;
-use derive_more::Constructor;
+
 use rust_decimal::prelude::Decimal;
 use serde::Deserialize;
 use serde::Serialize;
 
 /// This struct represents a trade
-#[derive(Serialize, Deserialize, Clone, Constructor, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Trade {
     pub id: String,
     pub buyer_order_id: Option<String>,

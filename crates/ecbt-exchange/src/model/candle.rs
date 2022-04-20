@@ -1,10 +1,9 @@
-use derive_more::Constructor;
 use rust_decimal::prelude::Decimal;
 use serde::Deserialize;
 use serde::Serialize;
 
 /// This struct represents a candle
-#[derive(Serialize, Deserialize, Clone, Constructor, Debug, PartialEq)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct Candle {
     pub time: u64,
     pub low: Decimal,
