@@ -1,6 +1,6 @@
+use super::shared::string_to_decimal;
 use serde::Deserialize;
 use serde::Serialize;
-use super::shared::string_to_decimal;
 
 use rust_decimal::prelude::Decimal;
 

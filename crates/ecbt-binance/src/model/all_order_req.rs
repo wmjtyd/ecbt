@@ -1,6 +1,6 @@
+use super::Paginator;
 use serde::Deserialize;
 use serde::Serialize;
-use super::Paginator;
 
 /// This struct represents all order
 #[derive(Clone, Serialize, Deserialize, Debug)]

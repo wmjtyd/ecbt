@@ -1,7 +1,7 @@
-use serde::Deserialize;
-use serde::Serialize;
 use super::Interval;
 use super::RateLimitType;
+use serde::Deserialize;
+use serde::Serialize;
 
 /// This struct represents the rate limit
 #[derive(Debug, Serialize, Deserialize, Clone)]

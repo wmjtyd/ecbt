@@ -1,6 +1,6 @@
+use super::Ticker;
 use serde::Deserialize;
 use serde::Serialize;
-use super::Ticker;
 
 /// This enum represents a book ticker
 #[derive(Debug, Serialize, Deserialize, Clone)]

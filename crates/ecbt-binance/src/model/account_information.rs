@@ -1,6 +1,6 @@
+use super::Balance;
 use serde::Deserialize;
 use serde::Serialize;
-use super::Balance;
 
 /// This struct represents the informations about the account
 #[derive(Debug, Serialize, Deserialize, Clone)]

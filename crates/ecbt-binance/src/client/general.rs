@@ -1,7 +1,7 @@
+use super::shared::Result;
 use super::BaseClient;
 use crate::model::{ExchangeInformation, ServerTime};
 use serde_json::Value;
-use super::shared::Result;
 
 impl BaseClient {
     // Test connectivity

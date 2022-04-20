@@ -1,6 +1,6 @@
+use super::SymbolPrice;
 use serde::Deserialize;
 use serde::Serialize;
-use super::SymbolPrice;
 
 /// This enum represents the prices
 #[derive(Debug, Serialize, Deserialize, Clone)]

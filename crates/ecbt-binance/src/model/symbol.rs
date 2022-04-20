@@ -1,6 +1,6 @@
+use super::SymbolFilter;
 use serde::Deserialize;
 use serde::Serialize;
-use super::SymbolFilter;
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 #[serde(rename_all = "camelCase")]

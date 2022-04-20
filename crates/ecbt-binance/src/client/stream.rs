@@ -1,24 +1,23 @@
-use std::{convert::TryFrom, fmt::Display};
-use std::sync::Mutex;
-use async_trait::async_trait;
-use futures::{SinkExt, stream::BoxStream, StreamExt};
-use serde::{de, Deserialize, Serialize};
-use serde_json::Value;
-use tokio::sync::mpsc::{unbounded_channel, UnboundedSender};
-use tokio_tungstenite::{connect_async, tungstenite::protocol::Message};
-use ecbt_exchange::errors::EcbtError;
+use super::shared::Result;
 use crate::{
-    BinanceParameters,
     model::websocket::{BinanceSubscription, BinanceWebsocketMessage},
+    BinanceParameters,
 };
+use async_trait::async_trait;
+use ecbt_exchange::errors::EcbtError;
+use ecbt_exchange::exchange::Environment;
+use ecbt_exchange::stream::{ExchangeStream, Subscriptions};
 use ecbt_exchange::{
-    model::websocket::EcbtWebSocketMessage,
-    model::websocket::Subscription,
+    model::websocket::EcbtWebSocketMessage, model::websocket::Subscription,
     model::websocket::WebSocketResponse,
 };
-use ecbt_exchange::stream::{ExchangeStream, Subscriptions};
-use super::shared::Result;
-use ecbt_exchange::exchange::Environment;
+use futures::{stream::BoxStream, SinkExt, StreamExt};
+use serde::{de, Deserialize, Serialize};
+use serde_json::Value;
+use std::sync::Mutex;
+use std::{convert::TryFrom, fmt::Display};
+use tokio::sync::mpsc::{unbounded_channel, UnboundedSender};
+use tokio_tungstenite::{connect_async, tungstenite::protocol::Message};
 
 const WS_URL_PROD: &str = "wss://stream.binance.com:9443/stream";
 const WS_URL_SANDBOX: &str = "wss://testnet.binance.vision/stream";
@@ -180,8 +179,12 @@ impl Display for BinanceSubscription {
 impl From<Subscription> for BinanceSubscription {
     fn from(subscription: Subscription) -> Self {
         match subscription {
-            Subscription::OrderBookUpdates(symbol) => BinanceSubscription::Depth(crate::model::MarketPair::from(symbol).0, None),
-            Subscription::Trades(symbol) => BinanceSubscription::Trade(crate::model::MarketPair::from(symbol).0)
+            Subscription::OrderBookUpdates(symbol) => {
+                BinanceSubscription::Depth(crate::model::MarketPair::from(symbol).0, None)
+            }
+            Subscription::Trades(symbol) => {
+                BinanceSubscription::Trade(crate::model::MarketPair::from(symbol).0)
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
-use serde::Deserialize;
-use serde::Serialize;
 use super::ExchangeFilter;
 use super::RateLimit;
 use super::Symbol;
+use serde::Deserialize;
+use serde::Serialize;
 
 /// This struct represents informations about the ecbt-exchange
 #[derive(Debug, Serialize, Deserialize, Clone)]

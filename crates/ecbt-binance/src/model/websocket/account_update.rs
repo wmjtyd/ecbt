@@ -1,6 +1,6 @@
+use super::AccountUpdateBalance;
 use serde::Deserialize;
 use serde::Serialize;
-use super::AccountUpdateBalance;
 
 /// This struct represents the account update
 #[derive(Debug, Serialize, Deserialize, Clone)]
