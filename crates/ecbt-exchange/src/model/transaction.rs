@@ -1,9 +1,8 @@
-use derive_more::Constructor;
 use serde::Deserialize;
 use serde::Serialize;
 
 /// This struct represents a transaction
-#[derive(Serialize, Deserialize, Clone, Constructor, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Transaction<T> {
     pub id: T,
     pub market_pair: String,

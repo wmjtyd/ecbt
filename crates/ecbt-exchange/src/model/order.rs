@@ -2,13 +2,13 @@ use super::OrderStatus;
 use super::OrderType;
 use super::Side;
 use super::Trade;
-use derive_more::Constructor;
+
 use rust_decimal::prelude::Decimal;
 use serde::Deserialize;
 use serde::Serialize;
 
 /// This struct represents an order
-#[derive(Serialize, Deserialize, Clone, Constructor, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug)]
 pub struct Order {
     pub id: String,
     pub market_pair: String,
