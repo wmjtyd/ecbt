@@ -1,7 +1,9 @@
-# ecbt
-![CI status](https://github.com/oss-jtyd/ecbt/actions/workflows/build.yml/badge.svg)
+# ecbt(Exchange Connect Base Tool)
+[![CI status](https://github.com/wmjtyd/ecbt/actions/workflows/build.yml/badge.svg)](https://github.com/wmjtyd/ecbt/actions?query=workflow%3ABuild+branch%3Amain)
+[![CI status](https://github.com/wmjtyd/ecbt/actions/workflows/security.yml/badge.svg)](https://github.com/wmjtyd/ecbt/actions?query=workflow%3ASecurity)
 [![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
-[![GitHub release](https://img.shields.io/github/v/release/oss-jtyd/ecbt.svg)](https://github.com/oss-jtyd/ecbt/releases)
+[![Crates.io](https://img.shields.io/crates/v/ecbt.svg)](https://crates.io/crates/ecbt)
+[![Minimum rustc version](https://img.shields.io/badge/rustc-1.54+-lightgray.svg)](https://github.com/wmjtyd/ecbt)
 
 High performance cryptocurrency trading API with support for user defined networking.
 
@@ -21,7 +23,7 @@ Add dependencies in `Cargo.toml`:
 ```toml
 [dependencies]
 tokio = { version = "1", features = ["full"] }
-ecbt = { git = "https://github.com/oss-jtyd/ecbt", tag = "1.0.0" }
+ecbt = { git = "https://github.com/wmjtyd/ecbt", tag = "1.0.0" }
 ```
 
 ### HTTP
