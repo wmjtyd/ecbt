@@ -1,8 +1,8 @@
 use std::convert::TryFrom;
 
-use chrono::Duration;
 use serde::Deserialize;
 use serde::Serialize;
+use time::Duration;
 
 use crate::{EcbtError, Result};
 

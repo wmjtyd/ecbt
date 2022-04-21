@@ -1,5 +1,7 @@
 use async_trait::async_trait;
 
+pub use errors::*;
+
 use crate::info::ExchangeInfoRetrieval;
 use crate::model::{
     Balance, CancelAllOrdersRequest, CancelOrderRequest, Candle, EcbtOrderRequest,
@@ -16,8 +18,6 @@ pub mod message;
 pub mod model;
 pub mod shared;
 pub mod stream;
-
-pub use errors::*;
 
 #[async_trait]
 pub trait Exchange: ExchangeInfoRetrieval + ExchangeAccount + ExchangeMarketData + Sized {

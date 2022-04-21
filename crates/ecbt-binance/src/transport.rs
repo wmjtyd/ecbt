@@ -1,4 +1,3 @@
-use chrono::Utc;
 use hex::encode as hexify;
 use hmac::{Hmac, Mac};
 use reqwest::header;
@@ -9,6 +8,7 @@ use serde::Serialize;
 use sha2::Sha256;
 use url::Url;
 
+use ecbt_exchange::shared::utc_now;
 use ecbt_exchange::EcbtError;
 
 use crate::BinanceContentError;
@@ -205,10 +205,9 @@ impl Transport {
             let query = serde_urlencoded::to_string(params)?;
             url.set_query(Some(&query));
         };
-
         if add_recv_window {
             url.query_pairs_mut()
-                .append_pair("timestamp", &Utc::now().timestamp_millis().to_string());
+                .append_pair("timestamp", &utc_now().to_string());
             url.query_pairs_mut()
                 .append_pair("recvWindow", &self.recv_window.to_string());
         };

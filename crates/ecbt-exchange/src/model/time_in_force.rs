@@ -1,9 +1,9 @@
 use super::TimeInForceVisitor;
-use chrono::Duration;
 use serde::Deserialize;
 use serde::Deserializer;
 use serde::Serialize;
 use serde::Serializer;
+use time::Duration;
 
 /// This enum represents time in force
 #[derive(Clone, Debug, PartialEq, Copy)]
@@ -33,7 +33,7 @@ impl Serialize for TimeInForce {
             TimeInForce::GoodTillCancelled => String::from("GTC"),
             TimeInForce::ImmediateOrCancelled => String::from("IOC"),
             TimeInForce::FillOrKill => String::from("FOK"),
-            TimeInForce::GoodTillTime(d) => format!("GTT,{}", d.num_milliseconds()),
+            TimeInForce::GoodTillTime(d) => format!("GTT,{}", d.whole_milliseconds()),
         };
         serializer.serialize_str(s.as_str())
     }
