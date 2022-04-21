@@ -57,4 +57,11 @@ pub enum SymbolFilter {
         #[serde(with = "string_to_decimal")]
         step_size: Decimal,
     },
+    #[serde(rename_all = "camelCase")]
+    TrailingDelta {
+        min_trailing_above_delta: u64,
+        max_trailing_above_delta: u64,
+        min_trailing_below_delta: u64,
+        max_trailing_below_delta: u64,
+    },
 }
