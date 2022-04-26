@@ -20,6 +20,17 @@ jobs:
           profile: minimal
           override: true
 
-      - run: cargo publish
+      - name: Publish Exchange
+        run: cd crates/ecbt-exchange && cargo publish
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
+
+      - name: Publish Binance
+        run: cd crates/ecbt-binance  && cargo publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}          
+
+      - name: Publish Ecbt
+        run: cargo publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}          
