@@ -3,8 +3,9 @@ name = "ecbt"
 version = "0.1.0"
 edition = "2021"
 description = "High performance cryptocurrency trading API with support for user defined networking."
-repository = "https://github.com/oss-jtyd/ecbt"
-keywords = ["cryptocurrency", "exchange", "api"]
+license = "BSD-2-Clause"
+repository = "https://github.com/wmjtyd/ecbt"
+keywords = ["cryptocurrency", "exchange", "ecbt", "api"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
