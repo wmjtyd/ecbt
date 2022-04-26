@@ -20,4 +20,6 @@ jobs:
           profile: minimal
           override: true
 
-      - run: cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      - run: cargo publish
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
