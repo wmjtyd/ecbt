@@ -34,7 +34,7 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           profile: minimal
-          toolchain: stable
+          toolchain: 1.57.0
           override: true
       - name: Check code format
         run: cargo fmt -- --check
