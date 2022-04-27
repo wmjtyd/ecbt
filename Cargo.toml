@@ -1,6 +1,6 @@
 [package]
 name = "ecbt"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
 description = "High performance cryptocurrency trading API with support for user defined networking."
 license = "BSD-2-Clause"
@@ -9,10 +9,34 @@ keywords = ["cryptocurrency", "exchange", "ecbt", "api"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[[example]]
+name = "orderbook_http"
+path = "examples/ecbt_binance_http.rs"
+
+[[example]]
+name = "orderbook_ws"
+path = "examples/ecbt_binance_ws.rs"
+
 [dependencies]
-rust_decimal = "1.14.3"
-tokio = { version = "1.0", features = ["full"] }
-futures = "0.3"
+ecbt-exchange = { path = "crates/ecbt-exchange", version = "0.0.0" }
+ecbt-binance = { path = "crates/ecbt-binance", version = "0.0.0" }
+
+hex = "0.4.2"
+hmac = "0.8.1"
+sha2 = "0.9.1"
+
+async-trait = "0.1"
+futures = "0.3.19"
+time = "0.3.9"
+rust_decimal = "1.23.1"
+url = "2.2.0"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_urlencoded = "0.7.0"
+thiserror = "1"
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+tokio = { version = "1", features = ["full"] }
+tokio-tungstenite = { version = "0.13", features = ["tls"] }
 
 tracing = "0.1"
 tracing-appender = "0.2"
