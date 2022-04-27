@@ -17,41 +17,36 @@ impl BaseClient {
         I: Into<Option<u64>>,
         S: Into<MarketPair>,
     {
-        let symbol = format!("{}", symbol.into().0);
+        let symbol = symbol.into().0.to_string();
         let limit = limit.into().unwrap_or(100);
         let params = json! {{"symbol": symbol, "limit": limit}};
 
-        Ok(self.transport.get("/api/v3/depth", Some(&params)).await?)
+        self.transport.get("/api/v3/depth", Some(&params)).await
     }
 
     // Latest price for ALL symbols.
     pub async fn get_all_prices(&self) -> Result<Prices> {
-        Ok(self
-            .transport
+        self.transport
             .get::<_, ()>("/api/v3/ticker/price", None)
-            .await?)
+            .await
     }
 
     // Latest price for ONE symbol.
     pub async fn get_price<S: Into<MarketPair>>(&self, symbol: S) -> Result<SymbolPrice> {
-        let symbol = format!("{}", symbol.into().0);
+        let symbol = symbol.into().0.to_string();
         let params = json! {{"symbol": symbol}};
 
-        let price = self
-            .transport
+        self.transport
             .get("/api/v3/ticker/price", Some(&params))
-            .await?;
-
-        Ok(price)
+            .await
     }
 
     // Symbols order book ticker
     // -> Best price/qty on the order book for ALL symbols.
     pub async fn get_all_book_tickers(&self) -> Result<BookTickers> {
-        Ok(self
-            .transport
+        self.transport
             .get::<_, ()>("/api/v3/ticker/bookTicker", None)
-            .await?)
+            .await
     }
 
     // -> Best price/qty on the order book for ONE symbol
@@ -59,10 +54,10 @@ impl BaseClient {
         let symbol = symbol.to_string();
         self.get_all_book_tickers().await.and_then(
             move |BookTickers::AllBookTickers(book_tickers)| {
-                Ok(book_tickers
+                book_tickers
                     .into_iter()
-                    .find(|obj| obj.symbol == symbol)
-                    .ok_or(EcbtError::SymbolNotFound())?)
+                    .find(|ticker| ticker.symbol == symbol)
+                    .ok_or(EcbtError::SymbolNotFound())
             },
         )
     }
@@ -70,10 +65,9 @@ impl BaseClient {
     // 24hr ticker price change statistics
     pub async fn get_24h_price_stats(&self, symbol: &str) -> Result<PriceStats> {
         let params = json! {{"symbol": symbol}};
-        Ok(self
-            .transport
+        self.transport
             .get("/api/v3/ticker/24hr", Some(&params))
-            .await?)
+            .await
     }
 
     // Returns up to 'limit' klines for given symbol and interval ("1m", "5m", ...)
@@ -105,10 +99,9 @@ impl BaseClient {
 
     // 24hr ticker price change statistics
     pub async fn get_24h_price_stats_all(&self) -> Result<Vec<PriceStats>> {
-        Ok(self
-            .transport
+        self.transport
             .get::<_, ()>("/api/v3/ticker/24hr", None)
-            .await?)
+            .await
     }
 }
 

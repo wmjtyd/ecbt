@@ -93,7 +93,7 @@ impl Transport {
         let url = self.get_url(endpoint, params, false)?;
         let request = self.client.get(url).send().await?;
 
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub async fn post<O, D>(&self, endpoint: &str, data: Option<&D>) -> Result<O>
@@ -104,7 +104,7 @@ impl Transport {
         let url = self.get_url::<()>(endpoint, None, false)?;
         let request = self.client.post(url).form(&data).send().await?;
 
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub async fn put<O, D>(&self, endpoint: &str, data: Option<D>) -> Result<O>
@@ -115,7 +115,7 @@ impl Transport {
         let url = self.get_url::<()>(endpoint, None, false)?;
         let request = self.client.put(url).form(&data).send().await?;
 
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub async fn delete<O, Q>(&self, endpoint: &str, data: Option<&Q>) -> Result<O>
@@ -126,7 +126,7 @@ impl Transport {
         let url = self.get_url::<()>(endpoint, None, false)?;
         let request = self.client.delete(url).form(&data).send().await?;
 
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub async fn signed_get<O, S>(&self, endpoint: &str, params: Option<&S>) -> Result<O>
@@ -141,7 +141,7 @@ impl Transport {
 
         let request = self.client.get(url).send().await?;
 
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub async fn signed_post<D, O>(&self, endpoint: &str, data: Option<&D>) -> Result<O>
@@ -155,7 +155,7 @@ impl Transport {
         url.query_pairs_mut().append_pair("signature", &signature);
 
         let request = self.client.post(url).form(&data).send().await?;
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub async fn signed_put<O, Q>(&self, endpoint: &str, data: Option<&Q>) -> Result<O>
@@ -170,7 +170,7 @@ impl Transport {
 
         let request = self.client.put(url).form(&data).send().await?;
 
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub async fn signed_delete<O, Q>(&self, endpoint: &str, data: Option<&Q>) -> Result<O>
@@ -185,7 +185,7 @@ impl Transport {
 
         let request = self.client.delete(url).form(&data).send().await?;
 
-        Ok(self.response_handler(request).await?)
+        self.response_handler(request).await
     }
 
     pub fn get_url<Q>(
