@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
 [![Crates.io](https://img.shields.io/crates/v/ecbt.svg)](https://crates.io/crates/ecbt)
 [![Minimum rustc version](https://img.shields.io/badge/rustc-1.54+-lightgray.svg)](https://github.com/wmjtyd/ecbt)
+[![Join at Slack](https://img.shields.io/badge/chat-slack-brightgreen)](https://join.slack.com/t/wmjtyd/shared_invite/zt-17sfuaoj7-~0WmpuFL_NTqS~4WTNEXTg)
 
 High performance cryptocurrency trading API with support for user defined networking.
 
@@ -22,60 +23,73 @@ Add dependencies in `Cargo.toml`:
 
 ```toml
 [dependencies]
+ecbt = "0.1"
+ecbt-exchange = "0.1"
+ecbt-binance = "0.1"
 tokio = { version = "1", features = ["full"] }
-ecbt = { git = "https://github.com/wmjtyd/ecbt", tag = "1.0.0" }
 ```
 
 ### HTTP
 
 ```rust
+use std::borrow::Borrow;
+
+use ecbt::{
+    prelude::{
+        market_pair::{Currency, MarketPair},
+        GetPriceTickerRequest,
+    },
+    Ecbt,
+};
+use ecbt_binance::{Binance, BinanceParameters};
+use ecbt_exchange::ExchangeMarketData;
+
 #[tokio::main]
-async fn main() -> Result<()> {
-    let credentials = BinanceCredentials {
-        api_key: "xxx".to_string(),
-        api_secret: "xxx".to_string(),
-    };
-    let param = BinanceParameters {
-        environment: Sandbox,
-        credentials: Some(credentials),
-    };
-    let binance = Binance::new(param).await?;
+async fn main() {
+    let ecbt = Ecbt::http::<Binance>(BinanceParameters::sandbox())
+        .await
+        .unwrap();
     let request = GetPriceTickerRequest {
         market_pair: MarketPair(Currency::ETH, Currency::USDT),
     };
-    let s = binance.get_price_ticker(request.borrow()).await?;
+    let s = ecbt.get_price_ticker(request.borrow()).await.unwrap();
     println!("{:?}", s);
-    Ok(())
 }
 ```
 
 ### WebSocket
 
 ```rust
+use ecbt::{
+    prelude::{
+        market_pair::{Currency, MarketPair},
+        websocket::{EcbtWebSocketMessage, Subscription, WebSocketResponse},
+        ExchangeStream,
+    },
+    Ecbt,
+};
+use ecbt_binance::{BinanceParameters, BinanceWebsocket};
+
 #[tokio::main]
-async fn main() -> Result<()> {
-    let credentials = BinanceCredentials {
-        api_key: "xxx".to_string(),
-        api_secret: "xxx".to_string(),
-    };
-    let param = BinanceParameters {
-        environment: Sandbox,
-        credentials: Some(credentials),
-    };
-    let binance_ws = BinanceWebsocket::new(param).await?;
-    let symbol = MarketPair(Currency::ETH, Currency::USDT).to_string();
-    binance_ws
-        .subscribe(BinanceSubscription::Ticker(symbol), call_back)
-        .await?;
+async fn main() {
+    let ecbt = Ecbt::ws::<BinanceWebsocket>(BinanceParameters::sandbox())
+        .await
+        .unwrap();
+    let market = MarketPair(Currency::ETH, Currency::BTC);
 
-    std::thread::sleep(Duration::from_secs(10));
-    Ok(())
-}
+    ecbt.subscribe(Subscription::OrderBookUpdates(market), move |m| {
+        let r = m.as_ref();
 
-fn call_back(res: &Result<WebSocketResponse<BinanceWebsocketMessage>>) {
-    if let Ok(WebSocketResponse::Raw(BinanceWebsocketMessage::Ticker(msg))) = res {
-        println!("{:?}", msg);
-    }
+        if let Ok(WebSocketResponse::Generic(EcbtWebSocketMessage::OrderBook(order_book))) = r {
+            println!("{:?}", order_book)
+        } else if let Err(err) = r {
+            println!("{:#?}", err);
+        }
+    })
+    .await
+    .expect("Failed to subscribe to orderbook on Binance");
+
+    std::thread::sleep(std::time::Duration::from_millis(5000));
 }
 ```
 
