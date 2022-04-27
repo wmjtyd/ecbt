@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["OrderCanceled","This struct represents a canceled order"]]});

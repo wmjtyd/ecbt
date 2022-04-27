@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Trade","This struct represents a trade"]]});

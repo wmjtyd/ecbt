@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["OrderFilter","This struct represents an order"]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Balance","This struct represents the account balance"]]});

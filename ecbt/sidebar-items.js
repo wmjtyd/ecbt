@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["Ecbt",""]]});
+initSidebarItems({"mod":[["errors",""],["exchange",""],["model",""],["prelude","This module contains some Traits and Structs that are frequently used."]],"struct":[["Ecbt",""]]});

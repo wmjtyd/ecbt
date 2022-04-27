@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_pair",""]],"mod":[["shared",""]],"struct":[["ExchangeInfo","This struct represents informations about the ecbt-exchange"],["MarketPairHandle",""],["MarketPairInfo",""]],"trait":[["ExchangeInfoRetrieval","This struct represents the information retrieval"]]});

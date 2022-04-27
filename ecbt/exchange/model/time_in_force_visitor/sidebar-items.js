@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["TimeInForceVisitor","This struct uses the time in force enum"]]});

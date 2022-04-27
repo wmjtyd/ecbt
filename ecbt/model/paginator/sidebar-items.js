@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Paginator","This struct represents a paginator"]]});

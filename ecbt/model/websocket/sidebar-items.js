@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["EcbtWebSocketMessage","This enum represents a websocket message type"],["Subscription","This enum represents a subscription"],["WebSocketResponse","This enum represents a websocket response"]],"struct":[["AccountOrders","This struct represents the account order"]]});
