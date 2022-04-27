@@ -17,7 +17,7 @@ impl BaseClient {
         I: Into<Option<u64>>,
         S: Into<MarketPair>,
     {
-        let symbol = format!("{}", symbol.into().0);
+        let symbol = symbol.into().0.to_string();
         let limit = limit.into().unwrap_or(100);
         let params = json! {{"symbol": symbol, "limit": limit}};
 
@@ -34,7 +34,7 @@ impl BaseClient {
 
     // Latest price for ONE symbol.
     pub async fn get_price<S: Into<MarketPair>>(&self, symbol: S) -> Result<SymbolPrice> {
-        let symbol = format!("{}", symbol.into().0);
+        let symbol = symbol.into().0.to_string();
         let params = json! {{"symbol": symbol}};
 
         let price = self
@@ -59,10 +59,10 @@ impl BaseClient {
         let symbol = symbol.to_string();
         self.get_all_book_tickers().await.and_then(
             move |BookTickers::AllBookTickers(book_tickers)| {
-                Ok(book_tickers
+                book_tickers
                     .into_iter()
-                    .find(|obj| obj.symbol == symbol)
-                    .ok_or(EcbtError::SymbolNotFound())?)
+                    .find(|ticker| ticker.symbol == symbol)
+                    .ok_or(EcbtError::SymbolNotFound())
             },
         )
     }

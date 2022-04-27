@@ -41,24 +41,24 @@ pub enum Interval {
     OneMonth,
 }
 
-impl Into<Duration> for Interval {
-    fn into(self) -> Duration {
-        match self {
-            Self::OneMinute => Duration::minutes(1),
-            Self::ThreeMinutes => Duration::minutes(3),
-            Self::FiveMinutes => Duration::minutes(5),
-            Self::FifteenMinutes => Duration::minutes(15),
-            Self::ThirtyMinutes => Duration::minutes(30),
-            Self::OneHour => Duration::hours(1),
-            Self::TwoHours => Duration::hours(2),
-            Self::FourHours => Duration::hours(4),
-            Self::SixHours => Duration::hours(6),
-            Self::EightHours => Duration::hours(8),
-            Self::TwelveHours => Duration::hours(12),
-            Self::OneDay => Duration::days(1),
-            Self::ThreeDays => Duration::days(3),
-            Self::OneWeek => Duration::weeks(1),
-            Self::OneMonth => Duration::days(30),
+impl From<Interval> for Duration {
+    fn from(i: Interval) -> Self {
+        match i {
+            Interval::OneMinute => Duration::minutes(1),
+            Interval::ThreeMinutes => Duration::minutes(3),
+            Interval::FiveMinutes => Duration::minutes(5),
+            Interval::FifteenMinutes => Duration::minutes(15),
+            Interval::ThirtyMinutes => Duration::minutes(30),
+            Interval::OneHour => Duration::hours(1),
+            Interval::TwoHours => Duration::hours(2),
+            Interval::FourHours => Duration::hours(4),
+            Interval::SixHours => Duration::hours(6),
+            Interval::EightHours => Duration::hours(8),
+            Interval::TwelveHours => Duration::hours(12),
+            Interval::OneDay => Duration::days(1),
+            Interval::ThreeDays => Duration::days(3),
+            Interval::OneWeek => Duration::weeks(1),
+            Interval::OneMonth => Duration::days(30),
         }
     }
 }
