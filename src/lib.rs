@@ -83,10 +83,10 @@ pub struct Ecbt {}
 
 impl Ecbt {
     pub async fn http<E: Exchange>(parameters: E::InitParams) -> Result<E> {
-        Ok(E::new(parameters).await?)
+        E::new(parameters).await
     }
 
     pub async fn ws<E: ExchangeStream>(parameters: E::InitParams) -> Result<E> {
-        Ok(E::new(parameters).await?)
+        E::new(parameters).await
     }
 }
