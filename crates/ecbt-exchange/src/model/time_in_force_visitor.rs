@@ -17,8 +17,8 @@ impl<'de> Visitor<'de> for TimeInForceVisitor {
     where
         E: de::Error,
     {
-        if v.starts_with("GTT,") {
-            match v[4..].parse::<u64>() {
+        if let Some(stripped) = v.strip_prefix("GTT,") {
+            match stripped.parse::<u64>() {
                 Ok(v) => Ok(TimeInForce::GoodTillTime(Duration::milliseconds(v as i64))),
                 _ => Err(E::custom(format!("Invalid GTG: {}", v))),
             }

@@ -1,12 +1,16 @@
 [package]
 name = "ecbt-binance"
-version = "0.1.0"
+version = "0.0.0"
 edition = "2021"
+description = "Binance implementation for Ecbt."
+license = "BSD-2-Clause"
+repository = "https://github.com/wmjtyd/ecbt"
+keywords = ["cryptocurrency", "exchange", "ecbt", "api"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-ecbt-exchange = { path = "../ecbt-exchange" }
+ecbt-exchange = { path = "../ecbt-exchange", version = "0.0.0" }
 hex = "0.4.3"
 hmac = "0.12"
 sha2 = "0.10"
