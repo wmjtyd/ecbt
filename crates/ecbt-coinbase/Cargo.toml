@@ -1,5 +1,5 @@
 [package]
-name = "ecbt-exchange"
+name = "ecbt-coinbase"
 version = "0.0.0"
 edition = "2021"
 description = "The exchange traits of Ecbt."
@@ -10,6 +10,15 @@ keywords = ["cryptocurrency", "exchange", "ecbt", "api"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+ecbt-exchange = { path = "../ecbt-exchange", version = "0.0.0" }
+hex = "0.4.3"
+hmac = "0.12"
+sha2 = "0.10"
+
+chrono = { version = "0.4", features = ["std", "serde"] }
+base64 = "0.13"
+
+
 async-trait = "0.1"
 futures = "0.3.19"
 time = { version = "0.3.9", features = ["parsing", "formatting"] }
@@ -22,6 +31,4 @@ serde_urlencoded = "0.7.0"
 thiserror = "1"
 reqwest = { version = "0.11", features = ["blocking", "json"] }
 tokio = { version = "1", features = ["full"] }
-tokio-stream = { version = "0.1", features = ["sync"] }
-tokio-util = { version = "0.7", features = ["compat"] }
 tokio-tungstenite = { version = "0.13", features = ["tls"] }
