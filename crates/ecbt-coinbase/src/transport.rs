@@ -56,7 +56,7 @@ impl Transport {
         let mut headers = header::HeaderMap::new();
         headers.insert(
             "USER-AGENT",
-            header::HeaderValue::from_str("openlimit")
+            header::HeaderValue::from_str("ecbt")
                 .expect("Couldn't create USER-AGENT header from string."),
         );
 
@@ -78,7 +78,7 @@ impl Transport {
         let mut headers = header::HeaderMap::new();
         headers.insert(
             "USER-AGENT",
-            header::HeaderValue::from_str("openlimit")
+            header::HeaderValue::from_str("ecbt")
                 .expect("Couldn't create USER-AGENT header from string."),
         );
 
