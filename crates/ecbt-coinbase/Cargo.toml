@@ -14,10 +14,7 @@ ecbt-exchange = { path = "../ecbt-exchange", version = "0.0.0" }
 hex = "0.4.3"
 hmac = "0.12"
 sha2 = "0.10"
-
-chrono = { version = "0.4", features = ["std", "serde"] }
 base64 = "0.13"
-
 
 async-trait = "0.1"
 futures = "0.3.19"

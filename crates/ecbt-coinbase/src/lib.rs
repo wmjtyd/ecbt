@@ -1,28 +1,6 @@
 //! This module provides functionality for communicating with the coinbase API.
-//! # Example
-//! ```no_run
-//! use ecbt::exchange::coinbase::Coinbase;
-//! use ecbt::exchange::coinbase::CoinbaseParameters;
-//! use ecbt::prelude::*;
-//! use ecbt::model::market_pair::*;
-//!
-//! #[tokio::main]
-//! async fn main() {
-//!     let coinbase = Coinbase::new(CoinbaseParameters::production())
-//!                         .await
-//!                         .expect("Couldn't create coinbase client");
-//!
-//!     let market_pair = MarketPair(Currency::BTC, Currency::ETH);
-//!     let order_book = coinbase.order_book(&OrderBookRequest { market_pair })
-//!                         .await
-//!                         .expect("Couldn't get order book");
-
-//!     println!("{:?}", order_book);
-//! }
-//! ```
 
 use async_trait::async_trait;
-use chrono::Duration;
 use client::BaseClient;
 use ecbt_exchange::info::*;
 use ecbt_exchange::shared::{timestamp_mills, timestamp_to_iso8601_datetime, Result};
@@ -38,6 +16,7 @@ use ecbt_exchange::{
     },
 };
 use std::convert::TryFrom;
+use time::Duration;
 use transport::Transport;
 
 pub mod client;
@@ -445,26 +424,25 @@ impl From<TimeInForce> for model::OrderTimeInForce {
             TimeInForce::GoodTillCancelled => model::OrderTimeInForce::GTC,
             TimeInForce::FillOrKill => model::OrderTimeInForce::FOK,
             TimeInForce::ImmediateOrCancelled => model::OrderTimeInForce::IOC,
-            TimeInForce::GoodTillTime(_duration) => {
-                let _day: Duration = Duration::days(1);
-                let _hour: Duration = Duration::hours(1);
-                let _minute: Duration = Duration::minutes(1);
-// TODO ws
-                // if duration == day {
-                //     model::OrderTimeInForce::GTT {
-                //         cancel_after: model::CancelAfter::Day,
-                //     }
-                // } else if duration == hour {
-                //     model::OrderTimeInForce::GTT {
-                //         cancel_after: model::CancelAfter::Hour,
-                //     }
-                // } else if duration == minute {
-                //     model::OrderTimeInForce::GTT {
-                //         cancel_after: model::CancelAfter::Min,
-                //     }
-                // } else {
-                panic!("Coinbase only supports durations of 1 day, 1 hour or 1 minute")
-                // }
+            TimeInForce::GoodTillTime(duration) => {
+                let day: Duration = Duration::days(1);
+                let hour: Duration = Duration::hours(1);
+                let minute: Duration = Duration::minutes(1);
+                if duration == day {
+                    model::OrderTimeInForce::GTT {
+                        cancel_after: model::CancelAfter::Day,
+                    }
+                } else if duration == hour {
+                    model::OrderTimeInForce::GTT {
+                        cancel_after: model::CancelAfter::Hour,
+                    }
+                } else if duration == minute {
+                    model::OrderTimeInForce::GTT {
+                        cancel_after: model::CancelAfter::Min,
+                    }
+                } else {
+                    panic!("Coinbase only supports durations of 1 day, 1 hour or 1 minute")
+                }
             }
         }
     }
