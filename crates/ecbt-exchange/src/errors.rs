@@ -67,6 +67,8 @@ pub enum EcbtError {
     MissingParameter(String),
     #[error("{0}")]
     InvalidParameter(String),
+    #[error("{0}")]
+    TimeFormatError(String),
 }
 
 pub type Result<T> = std::result::Result<T, crate::errors::EcbtError>;

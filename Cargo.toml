@@ -20,6 +20,7 @@ path = "examples/ecbt_binance_ws.rs"
 [dependencies]
 ecbt-exchange = { path = "crates/ecbt-exchange", version = "0.0.0" }
 ecbt-binance = { path = "crates/ecbt-binance", version = "0.0.0" }
+ecbt-coinbase = { path = "crates/ecbt-coinbase", version = "0.0.0" }
 
 hex = "0.4.2"
 hmac = "0.8.1"
