@@ -12,7 +12,7 @@ async fn main() {
     let coinbase = Coinbase::new(CoinbaseParameters::sandbox())
         .await
         .expect("Couldn't create coinbase client");
-    let market_pair = MarketPair(Currency::BTC, Currency::ETH);
+    let market_pair = MarketPair(Currency::ETH, Currency::BTC);
     let order_book = coinbase
         .order_book(&OrderBookRequest { market_pair })
         .await
