@@ -107,6 +107,6 @@ Contact or join us [@oss-jtyd](https://github.com/oss-jtyd).
 - [done] Binance support
 - [todo] Nash support
 - [todo] Huobi support
-- [todo] Coinbase support
+- [done] Coinbase support
 - [todo] Apifiny support
 - [todo] Okex support
