@@ -8,6 +8,13 @@ repository = "https://github.com/wmjtyd/ecbt"
 keywords = ["cryptocurrency", "exchange", "ecbt", "api"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[example]]
+name = "binance_http"
+path = "examples/binance_http.rs"
+
+[[example]]
+name = "binance_ws"
+path = "examples/binance_ws.rs"
 
 [dependencies]
 ecbt-exchange = { path = "../ecbt-exchange", version = "0.0.0" }
