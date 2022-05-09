@@ -60,6 +60,11 @@ pub struct Options {
 }
 
 impl Options {
+
+    const FTX_API_KEY: &'static str = "FTX_API_KEY";
+    const FTX_API_SECRET: &'static str = "FTX_API_SECRET";
+    const FTX_SUBACCOUNT: &'static str = "FTX_SUBACCOUNT";
+
     pub fn us() -> Self {
         Options {
             endpoint: Endpoint::Us,
@@ -70,19 +75,19 @@ impl Options {
     pub fn from_env() -> Self {
         Options::default()
             .authenticate(
-                var("API_KEY").expect("API Key is not defined."),
-                var("API_SECRET").expect("API Secret is not defined."),
+                var(Self::FTX_API_KEY).expect("FTX_API_KEY Key is not defined."),
+                var(Self::FTX_API_SECRET).expect("FTX_API_SECRET Secret is not defined."),
             )
-            .subaccount_optional(var("SUBACCOUNT").ok())
+            .subaccount_optional(var(Self::FTX_SUBACCOUNT).ok())
     }
 
     pub fn from_env_us() -> Self {
         Options::us()
             .authenticate(
-                var("API_KEY").expect("API Key is not defined."),
-                var("API_SECRET").expect("API Secret is not defined."),
+                var(Self::FTX_API_KEY).expect("FTX_API_KEY Key is not defined."),
+                var(Self::FTX_API_SECRET).expect("FTX_API_SECRET Secret is not defined."),
             )
-            .subaccount_optional(var("SUBACCOUNT").ok())
+            .subaccount_optional(var(Self::FTX_SUBACCOUNT).ok())
     }
 
     #[must_use]
