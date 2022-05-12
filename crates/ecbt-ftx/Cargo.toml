@@ -29,8 +29,11 @@ serde_qs = "0.8"
 serde_with = {version = "^1.9.1", features = ["chrono"]}
 thiserror = "1"
 tokio = {version = "^1.5.0", features = ["macros"], optional = true}
-tokio-tungstenite = {version = "^0.17.1", features = ["native-tls"], optional = true}
-async-tungstenite = "*"
+# tokio-tungstenite = {version = "^0.17.1", features = ["native-tls"], optional = true}
+# async-tungstenite = "*"
+# tokio-tungstenite = { version = "0.13", features = ["tls"], optional = true}
+tokio-tungstenite = {version = "^0.14.0", features = ["native-tls"], optional = true}
+
 
 [dev-dependencies]
 env_logger = "^0.9.0"

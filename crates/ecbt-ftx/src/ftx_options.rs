@@ -60,7 +60,6 @@ pub struct Options {
 }
 
 impl Options {
-
     const FTX_API_KEY: &'static str = "FTX_API_KEY";
     const FTX_API_SECRET: &'static str = "FTX_API_SECRET";
     const FTX_SUBACCOUNT: &'static str = "FTX_SUBACCOUNT";

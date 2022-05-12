@@ -38,6 +38,7 @@ impl Ws {
     pub const ENDPOINT_US: &'static str = "wss://ftx.us/ws";
 
     pub async fn connect(options: Options) -> Result<Self> {
+        println!("Connecting to {}", options.endpoint.ws());
         let (mut stream, _) = connect_async(options.endpoint.ws()).await?;
         let is_authenticated = if let (Some(key), Some(secret)) = (options.key, options.secret) {
             let timestamp = SystemTime::now()
