@@ -1,4 +1,5 @@
 use ecbt_exchange::exchange::Environment;
+use ecbt_exchange::model::market_pair::MarketPair;
 use std::env::var;
 
 #[derive(Default, Clone, Debug)]
@@ -11,12 +12,12 @@ impl FtxParameters {
     pub fn ws(&self) -> &'static str {
         match self.environment {
             Environment::Production => "wss://ftx.com/ws",
-            Environment::Sandbox => "wss://ftxsandbox.com/ws",
+            Environment::Sandbox => "wss://ftx.com/ws",
         }
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone,Copy)]
 pub enum Endpoint {
     Com,
     Us,
@@ -106,5 +107,14 @@ impl Options {
     pub fn subaccount_optional(mut self, subaccount: Option<String>) -> Self {
         self.subaccount = subaccount;
         self
+    }
+
+    /// Returns the market pair for the given currency pair.
+    /// # Examples Com:{}-{} US:{}/{}
+    pub fn to_market(&self, market_pair: MarketPair) -> String {
+        match self.endpoint {
+            Endpoint::Com => format!("{}-{}", market_pair.0, market_pair.1),
+            Endpoint::Us => format!("{}/{}", market_pair.0, market_pair.1),
+        }
     }
 }

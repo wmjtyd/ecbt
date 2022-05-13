@@ -1,4 +1,6 @@
 use dotenv::dotenv;
+use ecbt_exchange::model::currency::Currency;
+use ecbt_exchange::model::market_pair::MarketPair;
 use ecbt_ftx::ftx_options::{Endpoint, Options};
 use ecbt_ftx::ws::Result;
 use ecbt_ftx::ws::{Channel, Data, Orderbook, Ws};
@@ -15,10 +17,13 @@ async fn main() -> Result<()> {
         secret: Some("7dqybPY84KtZMxL_YAoKMQlQDNuFPAbbF73a8tI5".to_string()),
         subaccount: Some("saber".to_string()),
     };
+    let option_clone = options.clone();
     let mut websocket = Ws::connect(options).await?;
     // let mut websocket = Ws::connect(Options::from_env_us()).await?;
-
-    let market = String::from("BTC-PERP");
+    // let market = String::from("BTC-PERP");
+    let market = option_clone
+        .clone()
+        .to_market(MarketPair(Currency::ETH, Currency::USDT));
     let mut orderbook = Orderbook::new(market.to_owned());
 
     websocket
@@ -40,7 +45,8 @@ async fn main() -> Result<()> {
             }
             (_, Data::OrderbookData(orderbook_data)) => {
                 orderbook.update(&orderbook_data);
-                print!("."); // To signify orderbook update
+                // print!("."); // To signify orderbook update
+                println!("{:?}", orderbook);
                 io::stdout().flush().unwrap(); // Emits the output immediately
             }
             _ => panic!("Unexpected data type"),
