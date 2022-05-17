@@ -1,4 +1,5 @@
 # ecbt(Exchange Connect Base Tool)
+
 [![CI status](https://github.com/wmjtyd/ecbt/actions/workflows/build.yml/badge.svg)](https://github.com/wmjtyd/ecbt/actions?query=workflow%3ABuild+branch%3Amain)
 [![CI status](https://github.com/wmjtyd/ecbt/actions/workflows/security.yml/badge.svg)](https://github.com/wmjtyd/ecbt/actions?query=workflow%3ASecurity)
 [![License](https://img.shields.io/badge/License-BSD_2--Clause-orange.svg)](https://opensource.org/licenses/BSD-2-Clause)
@@ -15,7 +16,6 @@ High performance cryptocurrency trading API with support for user defined networ
 ## License
 
 [BSD 2-Clause License](https://opensource.org/licenses/BSD-2-Clause)
-
 
 ## Usage
 
@@ -103,10 +103,11 @@ Contact or join us [@oss-jtyd](https://github.com/oss-jtyd).
 
 ### WIP
 
-- [done] Project Skeleton
-- [done] Binance support
-- [todo] Nash support
-- [todo] Huobi support
-- [done] Coinbase support
-- [todo] Apifiny support
-- [todo] Okex support
+- [x] Project Skeleton
+- [x] Binance support
+- [ ] Nash support
+- [ ] Huobi support
+- [x] Coinbase support
+- [ ] Apifiny support
+- [ ] Okex support
+- [x] FTX support
