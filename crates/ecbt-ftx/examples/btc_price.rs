@@ -16,7 +16,7 @@ async fn main() -> Result<()> {
         .clone()
         .to_market(MarketPair(Currency::ETH, Currency::USDT));
     let price = api.request(GetMarket::new(&market.to_owned())).await?.price;
-    println!("1 ETH is worth {} USDT.", price.unwrap());//BTC/USD
+    println!("1 ETH is worth {} USDT.", price.unwrap()); //BTC/USD
 
     Ok(())
 }

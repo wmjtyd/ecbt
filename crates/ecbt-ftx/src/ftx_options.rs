@@ -17,7 +17,7 @@ impl FtxParameters {
     }
 }
 
-#[derive(Debug, Clone,Copy)]
+#[derive(Debug, Clone, Copy)]
 pub enum Endpoint {
     Com,
     Us,
