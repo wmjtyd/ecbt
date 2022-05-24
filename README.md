@@ -93,6 +93,16 @@ async fn main() {
 }
 ```
 
+## Development
+
+### Configure `pre-commit` hook
+
+`pre-commit` can help you check the quality of your code
+before committing to a branch.
+
+1. Configure pre-commit with this tutorial: <https://pre-commit.com>
+2. Run `pre-commit install`.
+
 ## Contributions
 
 Because there are many exchanges, if ecbt has not been implemented, you may need to implement it yourself.
