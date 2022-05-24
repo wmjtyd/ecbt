@@ -30,12 +30,6 @@ jobs:
           key: ${{ runner.os }}-cargo-build-target-${{ hashFiles('**/Cargo.lock') }}
           restore-keys: |
             ${{ runner.os }}-build-target-
-      - name: Install stable
-        uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
       - name: Check code format
         run: cargo fmt -- --check
       - name: Check the package for errors
